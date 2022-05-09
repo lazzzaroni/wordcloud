@@ -1,5 +1,5 @@
 module.exports = {
-  content: [],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     fontFamily: {
       sans: ["Manrope", "system-ui", "sans-serif"],
