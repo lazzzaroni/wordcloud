@@ -6,6 +6,7 @@ import { ResultsComponent } from './components/results/results.component';
 import { StartComponent } from './components/start/start.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/start', pathMatch: 'full' },
   { path: 'start', component: StartComponent },
   { path: 'game', component: GameComponent },
   { path: 'results', component: ResultsComponent },
