@@ -2,11 +2,12 @@
   class="flex flex-col justify-center items-center h-screen overflow-hidden m-0"
 >
   <h2 class="w-4/5 text-xl font-bold text-center">
-    Question from DBQuestion from DBQuestion from DB
+    {{ gameData.question }}
   </h2>
+
   <div class="w-4/5 sm:w-3/5 lg:w-2/5 h-2/4 border-2 p-2">
     <ul>
-      <li>variant</li>
+      <li *ngFor="let item of allWords">{{ item }}</li>
     </ul>
   </div>
   <button
