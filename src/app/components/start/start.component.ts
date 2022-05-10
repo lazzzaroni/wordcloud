@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from 'src/app/services/data.service';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'wordcloud-start',
@@ -8,13 +8,12 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./start.component.css'],
 })
 export class StartComponent implements OnInit {
-  name = '';
+  constructor(private playerService: PlayerService) {}
 
-  constructor(private dataService: DataService) {}
+  name: string = '';
 
   onClickPlay() {
-    console.log(this.name);
-    this.dataService.userName = this.name;
+    this.playerService.name = this.name;
   }
 
   ngOnInit(): void {}

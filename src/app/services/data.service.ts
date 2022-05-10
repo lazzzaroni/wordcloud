@@ -8,7 +8,6 @@ import { IGameData } from '../interfaces/game.interface';
 })
 export class DataService {
   dataBase: IGameData = data;
-  userName: string | undefined;
 
   constructor() {}
 }
