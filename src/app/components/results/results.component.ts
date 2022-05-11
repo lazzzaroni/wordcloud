@@ -8,5 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ResultsComponent implements OnInit {
   constructor() {}
 
+  name: string = '';
+  score: number = 0;
+
   ngOnInit(): void {}
 }
