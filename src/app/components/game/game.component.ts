@@ -19,15 +19,15 @@ export class GameComponent implements OnInit {
     if (!this.dataService.dataBase) {
       this.dataService.getData().subscribe((res) => {
         this.data = res;
-        this.setWords();
+        this.initGame();
       });
     } else {
       this.data = this.dataService.dataBase;
-      this.setWords();
+      this.initGame();
     }
   }
 
-  setWords() {
+  initGame() {
     this.getRandomNum = Math.floor(Math.random() * this.data.length); // set number of random object with info about question from data.json
     this.gameData = this.data[this.getRandomNum]; // extract data for current session
     this.allWords = this.gameData.all_words;
