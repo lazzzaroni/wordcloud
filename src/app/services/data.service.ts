@@ -1,13 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable, tap } from 'rxjs';
 
-import data from '../../assets/data.json';
 import { IGameData } from '../interfaces/game.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  dataBase: IGameData = data;
+  dataBase!: IGameData[];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  getData() {
+    return this.http.get<IGameData[]>('assets/data.json').pipe(
+      map((res: IGameData[]) => {
+        this.dataBase = res;
+        return res;
+      })
+    );
+  }
 }
