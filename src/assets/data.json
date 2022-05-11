@@ -49,5 +49,20 @@
       "train"
     ],
     "good_words": ["car", "bus", "train"]
+  },
+  {
+    "question": "select frameworks",
+    "all_words": [
+      "vue",
+      "wow",
+      "react",
+      "seagul",
+      "track",
+      "angular",
+      "ubuntu",
+      "docker",
+      "terminal"
+    ],
+    "good_words": ["vue", "react", "angular"]
   }
 ]
