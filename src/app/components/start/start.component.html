@@ -12,15 +12,11 @@
     name="name"
   />
   <button
-    class="py-2 px-4 m-2 border-2 text-blue-600 hover:text-blue-700 border-blue-400 hover:bg-blue-200 active:bg-blue-300 rounded-md"
+    [ngClass]="!name.length ? 'btn-inactive' : 'btn-active'"
     routerLink="/game"
     (click)="onClickPlay()"
+    [disabled]="!name.length"
   >
     Play
   </button>
-  <!-- <a
-    href="#"
-    class="py-2 px-4 m-2 border-2 text-blue-600 hover:text-blue-700 border-blue-400 hover:bg-blue-200 active:bg-blue-300 rounded-md"
-    >Play</a
-  > -->
 </section>

@@ -2,17 +2,19 @@
   class="flex flex-col justify-center items-center h-screen overflow-hidden m-0"
 >
   <h2 class="w-4/5 text-xl font-bold text-center">
-    {{ gameData.question }}
+    {{ gameData.question | titlecase }}
   </h2>
 
-  <div class="w-4/5 sm:w-3/5 lg:w-2/5 h-2/4 border-2 p-2">
-    <ul>
-      <li *ngFor="let item of allWords">{{ item }}</li>
+  <div class="w-4/5 sm:w-3/5 lg:w-2/5 h-2/4 border-2 m-4 p-4 rounded-md">
+    <ul
+      class="flex flex-wrap justify-center items-center text-lg h-full gap-x-20 mx-4 my-0"
+    >
+      <li *ngFor="let item of allWords">
+        <button class="w-auto font-bold hover:underline">
+          {{ item }}
+        </button>
+      </li>
     </ul>
   </div>
-  <button
-    class="py-2 px-4 m-2 border-2 text-blue-600 hover:text-blue-700 border-blue-400 hover:bg-blue-200 active:bg-blue-300 rounded-md"
-  >
-    Check
-  </button>
+  <button class="btn-active">Check</button>
 </section>
