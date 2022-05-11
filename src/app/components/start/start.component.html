@@ -12,10 +12,10 @@
     name="name"
   />
   <button
-    [ngClass]="!name.length ? 'btn-inactive' : 'btn-active'"
+    [ngClass]="!name.trim().length ? 'btn-inactive' : 'btn-active'"
     routerLink="/game"
     (click)="onClickPlay()"
-    [disabled]="!name.length"
+    [disabled]="!name.trim().length"
   >
     Play
   </button>
