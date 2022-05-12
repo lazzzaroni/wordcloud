@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PlayerService } from 'src/app/services/player.service';
+
 @Component({
   selector: 'wordcloud-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css'],
 })
 export class ResultsComponent implements OnInit {
-  constructor() {}
+  name!: string;
+  score!: number;
 
-  name: string = '';
-  score: number = 0;
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = this.playerService.name;
+    this.score = this.playerService.score;
+
+    if (this.score < 0) {
+      this.score = 0;
+    }
+  }
 }
