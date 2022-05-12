@@ -10,10 +10,10 @@
     placeholder="Enter your nickname"
     [(ngModel)]="name"
     name="name"
+    (keyup.enter)="onClickPlay()"
   />
   <button
     [ngClass]="!name.trim().length ? 'btn-inactive' : 'btn-active'"
-    routerLink="/game"
     (click)="onClickPlay()"
     [disabled]="!name.trim().length"
   >
