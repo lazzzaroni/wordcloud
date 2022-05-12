@@ -9,9 +9,9 @@ import { PlayerService } from 'src/app/services/player.service';
   styleUrls: ['./start.component.css'],
 })
 export class StartComponent implements OnInit {
-  constructor(private playerService: PlayerService, private router: Router) {}
-
   name: string = '';
+
+  constructor(private playerService: PlayerService, private router: Router) {}
 
   onClickPlay() {
     this.playerService.name = this.name;
