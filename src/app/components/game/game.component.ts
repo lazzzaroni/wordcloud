@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from 'src/app/services/data.service';
-import { IGameData } from 'src/app/interfaces/game.interface';
+import {
+  IAnswers,
+  IAnswersObject,
+  IGameData,
+} from 'src/app/interfaces/game.interface';
+import { WordsService } from 'src/app/services/words.service';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'wordcloud-game',
@@ -11,11 +17,71 @@ import { IGameData } from 'src/app/interfaces/game.interface';
 export class GameComponent implements OnInit {
   data!: IGameData[];
   getRandomNum!: number;
-  gameData!: IGameData;
-  allWords!: string[];
-  goodWords!: string[];
+  answersObject!: IAnswersObject;
+  isGameFinished = false;
 
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private wordsService: WordsService,
+    private playerService: PlayerService
+  ) {}
+
+  initGame() {
+    this.getRandomNum = Math.floor(Math.random() * this.data.length); // set number of random object with info about question from data.json
+    const data = this.data[this.getRandomNum]; // extract data for current session
+    this.answersObject = this.wordsService.getGameData(data);
+  }
+
+  selectWord($event: any) {
+    if (this.isGameFinished) {
+      return;
+    }
+
+    const selectedWord = this.answersObject.words.find(
+      (el) => el.word === $event.target.innerText
+    );
+
+    if (selectedWord) {
+      const selectedWordIndex = this.answersObject.words.indexOf(selectedWord);
+      let selectedWordChecked =
+        this.answersObject.words[selectedWordIndex].checked;
+      this.answersObject.words[selectedWordIndex].checked =
+        !selectedWordChecked;
+    }
+  }
+
+  checkAnswers(): void {
+    this.answersObject.words = this.answersObject.words.map((item) => {
+      return {
+        ...item,
+        result: this.calcResult(item),
+      };
+    });
+
+    this.playerService.score = this.answersObject.words
+      .map((el) => el.result)
+      .reduce((acc, el) => acc + el, 0);
+
+    this.isGameFinished = true;
+  }
+
+  calcResult(item: IAnswers): number {
+    if (item.checked) {
+      return item.correct ? 2 : -1;
+    }
+    return 0;
+  }
+
+  isItemChecked(): boolean {
+    for (let index = 0; index < this.answersObject.words.length; index++) {
+      if (this.answersObject.words[index].checked) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  ngOnInit(): void {
     if (!this.dataService.dataBase) {
       this.dataService.getData().subscribe((res) => {
         this.data = res;
@@ -26,13 +92,4 @@ export class GameComponent implements OnInit {
       this.initGame();
     }
   }
-
-  initGame() {
-    this.getRandomNum = Math.floor(Math.random() * this.data.length); // set number of random object with info about question from data.json
-    this.gameData = this.data[this.getRandomNum]; // extract data for current session
-    this.allWords = this.gameData.all_words;
-    this.goodWords = this.gameData.good_words;
-  }
-
-  ngOnInit(): void {}
 }
