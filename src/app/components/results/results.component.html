@@ -1,10 +1,25 @@
 <section
   class="flex flex-col justify-center items-center h-screen overflow-hidden m-0"
 >
-  <div class="font-bold text-xl flex flex-col justify-center items-center">
-    <h2>Congratulations, {{ name }}!</h2>
-    <p>Your score is</p>
-    <p class="m-4 text-blue-800">{{ score }} points</p>
+  <div
+    class="font-bold text-xl flex flex-col text-center justify-center items-center mx-8"
+  >
+    <div *ngIf="score > 0; then congrats; else tryAgain"></div>
+    <ng-template #congrats>
+      <h2 class="m-2">Congratulations, {{ name }}!</h2>
+    </ng-template>
+    <ng-template #tryAgain>
+      <h2 class="m-2">Try again, {{ name }}, you can do it!</h2>
+    </ng-template>
+    <p class="m-2">Your score is</p>
+    <div *ngIf="score !== 1; then many; else one"></div>
+    <ng-template #many>
+      <p class="m-4 text-blue-800">{{ score }} points</p>
+    </ng-template>
+    <ng-template #one>
+      <p class="m-4 text-blue-800">{{ score }} point</p>
+    </ng-template>
   </div>
-  <a class="btn-active" routerLink="/start"> Play Again </a>
+  <a class="btn-active" routerLink="/game"> Play Again </a>
+  <a class="btn-active bg-blue-50" routerLink="/start"> Play New Game </a>
 </section>
