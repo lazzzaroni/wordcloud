@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PlayerService {
-  name: string = '';
+  name: string = 'Mystery Guest';
+  score: number = 666;
 
   constructor() {}
 }
