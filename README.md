@@ -12,7 +12,7 @@ If you wanna play with code, clone this repo and run these commands in project f
 
 #
 
-Here you can take a look at [deployed version](https://wordcloud-lazzaroni.netlify.app/start) of this game.
+Here you can take a look at [deployed version](https://wordcloud-lazzaroni.netlify.app) of this game.
 
 #
 
