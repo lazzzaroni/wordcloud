@@ -73,12 +73,22 @@ export class GameComponent implements OnInit {
   }
 
   isItemChecked(): boolean {
-    for (let index = 0; index < this.answersObject.words.length; index++) {
-      if (this.answersObject.words[index].checked) {
-        return true;
+    if (this.answersObject) {
+      for (let index = 0; index < this.answersObject.words.length; index++) {
+        if (this.answersObject.words[index].checked) {
+          return true;
+        }
       }
     }
     return false;
+  }
+
+  setAnswerClass(item: IAnswers) {
+    return {
+      selected: item.checked,
+      correct: item.result == 2,
+      incorrect: item.result == -1,
+    };
   }
 
   ngOnInit(): void {

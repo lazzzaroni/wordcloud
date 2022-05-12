@@ -13,18 +13,13 @@
         <button
           class="w-auto font-bold hover:underline border-2 border-transparent rounded-full px-4"
           (click)="selectWord($event)"
-          [ngClass]="{
-            selected: item.checked,
-            correct: item.result == 2,
-            incorrect: item.result == -1
-          }"
+          [ngClass]="setAnswerClass(item)"
         >
           {{ item.word }}
         </button>
       </li>
     </ul>
   </div>
-  <!-- <button class="btn-active">Check</button> -->
   <button
     *ngIf="!isGameFinished"
     (click)="checkAnswers()"
