@@ -12,13 +12,9 @@
       <h2 class="m-2">Try again, {{ name }}, you can do it!</h2>
     </ng-template>
     <p class="m-2">Your score is</p>
-    <div *ngIf="score !== 1; then many; else one"></div>
-    <ng-template #many>
-      <p class="m-4 text-blue-800">{{ score }} points</p>
-    </ng-template>
-    <ng-template #one>
-      <p class="m-4 text-blue-800">{{ score }} point</p>
-    </ng-template>
+    <p class="m-4 text-blue-800">
+      {{ score !== 1 ? score + " points" : score + " point" }}
+    </p>
   </div>
   <a class="btn-active" routerLink="/game"> Play Again </a>
   <a class="btn-active bg-blue-50" routerLink="/start"> Play New Game </a>
